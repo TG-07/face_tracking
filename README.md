@@ -28,28 +28,34 @@ This project detects and tracks a specific face in a video, creates clips contai
 ```bash
 git clone https://github.com/face-tracker-clipper.git
 cd face-tracker
+```
 
 2. Set up the conda environment (recommended):
 ```bash  
     chmod +x setup_environment.sh
     bash setup_environment.sh 
-
+```
 ## Usage
 
 You can run the face tracker and video clipper using the following command:
 
 1. Make the script executable:
+```bash
 chmod +x run.sh
+```
 
 2. Run the script:
+```bash 
 bash run.sh
+```
 
 You can modify the variables in `run.sh` to change the input paths, output directory, or tracker type.
 
 Alternatively, you can use this command to run it:
 
+```bash 
 python main.py --video_path <path_to_video> --reference_image <path_to_reference_image> --output_dir <output_directory> --tracker <tracker_type>
-text
+```
 
 Arguments:
 - `--video_path`: Path to the input video file
@@ -58,8 +64,9 @@ Arguments:
 - `--tracker`: Choose the tracking algorithm (options: 'kcf', 'csrt', 'mosse', default: 'kcf')
 
 Example:
+```bash 
 python main.py --video_path data/sample_video.mp4 --reference_image data/reference_face.jpg --output_dir output --tracker kcf
-
+```
 ## Output
 
 The script will create the following in the specified output directory:
