@@ -24,12 +24,15 @@ This project detects and tracks a specific face in a video, creates clips contai
 ## Installation
 
 1. Clone the repository:
+
+```bash
 git clone https://github.com/face-tracker-clipper.git
 cd face-tracker
 
 2. Set up the conda environment (recommended):
-chmod +x setup_environment.sh
-bash setup_environment.sh 
+```bash  
+    chmod +x setup_environment.sh
+    bash setup_environment.sh 
 
 ## Usage
 
