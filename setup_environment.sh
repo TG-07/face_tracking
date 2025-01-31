@@ -13,11 +13,8 @@ conda activate $ENV_NAME
 
 # Install required Python packages
 echo "Installing Python dependencies..."
-conda install -y numpy mtcnn pandas ffmpeg
-conda install -c conda-forge dlib
-conda install -c conda-forge face_recognition=1.3.0 
-pip install opencv-python
-pip install moviepy
+
+pip install opencv-python mtcnn scikit-learn -y
 
 # Confirm installation
 echo "Installation complete!"
