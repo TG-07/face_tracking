@@ -1,3 +1,5 @@
+#src/trackers.py
+
 import cv2
 import face_recognition
 import numpy as np
@@ -12,13 +14,12 @@ def detect_faces(frame, reference_encoding):
     
     for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
         bbox = (left, top, right-left, bottom-top)
-        all_faces.append(bbox)
         
         match = face_recognition.compare_faces([reference_encoding], face_encoding)[0]
         if match:
             target_face = bbox
     
-    return target_face, all_faces
+    return target_face
 
 class FaceTracker:
     def __init__(self, reference_image_path, tracker_type='kcf'):
@@ -39,15 +40,15 @@ class FaceTracker:
 
     def track_face(self, frame):
         if not self.initialized:
-            target_face, all_faces = detect_faces(frame, self.reference_encoding)
+            target_face  = detect_faces(frame, self.reference_encoding)
             if target_face:
                 self.tracker.init(frame, target_face)
                 self.initialized = True
-            return target_face, all_faces
+            return target_face
         
         success, bbox = self.tracker.update(frame)
         if success:
-            return bbox, None
+            return bbox
         else:
             self.reset_tracker()
             return self.track_face(frame)

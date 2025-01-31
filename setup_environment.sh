@@ -1,26 +1,24 @@
 #!/bin/bash
 
-# Set the name for the Conda environment
-ENV_NAME="face_tracker"
+# Set up a Python virtual environment and install dependencies
 
-# Set the Python version
-PYTHON_VERSION="3.8"
+ENV_NAME="face_tracking_env"
 
-# Create the Conda environment
-conda create -n $ENV_NAME python=$PYTHON_VERSION -y
+echo "Creating Conda environment: $ENV_NAME"
+conda create --name $ENV_NAME python=3.8 -y
 
-# Activate the environment
-source activate $ENV_NAME
+# Activate the Conda environment
+echo "Activating Conda environment..."
+conda activate $ENV_NAME
 
-# Install the required packages
-conda install -c conda-forge opencv=4.5.3 -y
-conda install -c conda-forge face_recognition=1.3.0 -y
-conda install numpy=1.21.2 -y
+# Install required Python packages
+echo "Installing Python dependencies..."
+conda install -y numpy mtcnn pandas ffmpeg
+conda install -c conda-forge dlib
+conda install -c conda-forge face_recognition=1.3.0 
+pip install opencv-python
+pip install moviepy
 
-# Install additional dependencies that might be required
-conda install -c conda-forge dlib -y
-
-# Print confirmation message
-echo "Conda environment '$ENV_NAME' has been created and packages have been installed."
-echo "To activate the environment, use: conda activate $ENV_NAME"
-
+# Confirm installation
+echo "Installation complete!"
+echo "To activate the Conda environment, run: conda activate $ENV_NAME"

@@ -3,11 +3,7 @@
 import argparse
 import os
 import sys
-
-# Add the src directory to the Python path
-sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
-
-from video_processor import process_video
+from src import VideoProcessor
 
 def main():
     parser = argparse.ArgumentParser(description="Face Tracker and Video Clipper")
@@ -17,8 +13,9 @@ def main():
     parser.add_argument("--tracker", choices=['kcf', 'csrt', 'mosse'], 
                         default='kcf', help="Choose the tracking algorithm")
     args = parser.parse_args()
-
-    process_video(args.video_path, args.reference_image, args.output_dir, args.tracker)
+    
+    vp = VideoProcessor(args.video_path, args.reference_image, args.output_dir, args.tracker)
+    vp.process_video()
 
 if __name__ == "__main__":
     main()

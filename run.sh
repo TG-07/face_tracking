@@ -7,10 +7,10 @@ ENV_NAME="face_tracker"
 source activate $ENV_NAME
 
 # Set the paths for input and output
-VIDEO_PATH="data/sample_video.mp4"
-REFERENCE_IMAGE="data/reference_face.jpg"
+VIDEO_PATH="data/video_2.mp4"
+REFERENCE_IMAGE="data/ref_image_1.png"
 OUTPUT_DIR="output"
-TRACKER="kcf"
+TRACKER="mosse"
 
 # Run the main.py script
 python main.py \

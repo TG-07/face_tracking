@@ -3,19 +3,22 @@
 import cv2
 import json
 import os
-from trackers import FaceTracker
+from .trackers import FaceTracker
 
 class VideoProcessor:
     def __init__(self, video_path, reference_image_path, output_dir, tracker_type='kcf'):
         self.cap = cv2.VideoCapture(video_path)
-        self.fps = self.cap.get(cv2.CAP_PROP_FPS)
-        self.frame_count = int(self.cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        self.fps = 32 # self.cap.get(cv2.CAP_PROP_FPS)
+        self.frame_count = 64 #int(self.cap.get(cv2.CAP_PROP_FRAME_COUNT))
         self.output_dir = output_dir
         self.tracker = FaceTracker(reference_image_path, tracker_type)
         self.clip_counter = 0
         self.current_clip = None
         self.current_writer = None
         self.metadata = []
+
+        print(self.fps)
+        print(self.frame_count)
 
     def process_video(self):
         frame_number = 0
