@@ -8,7 +8,7 @@ from .trackers import FaceTracker
 class VideoProcessor:
     def __init__(self, video_path, reference_image_path, output_dir, tracker_type='kcf'):
         self.cap = cv2.VideoCapture(video_path)
-        self.fps = 32 # self.cap.get(cv2.CAP_PROP_FPS)
+        self.fps = #self.cap.get(cv2.CAP_PROP_FPS)
         self.frame_count = 64 #int(self.cap.get(cv2.CAP_PROP_FRAME_COUNT))
         self.output_dir = output_dir
         self.tracker = FaceTracker(reference_image_path, tracker_type)
