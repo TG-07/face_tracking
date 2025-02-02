@@ -27,7 +27,7 @@ This project detects and tracks a specific face in a video, creates clips contai
 
 ```bash
 git clone https://github.com/TG-07/face_tracking.git
-cd face-tracker
+cd face_tracking
 ```
 
 2. Set up the conda environment (recommended):
