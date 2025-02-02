@@ -26,7 +26,7 @@ This project detects and tracks a specific face in a video, creates clips contai
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/face-tracker-clipper.git
+git clone https://github.com/TG-07/face_tracking.git
 cd face-tracker
 ```
 
