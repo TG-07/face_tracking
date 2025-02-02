@@ -13,7 +13,7 @@ def get_video_resolution(video_path):
     cap.release()
     return width, height
 
-video_path = "/Users/tanisha/Documents/Carnegie Mellon/intern/face_tracking/data/video_2.mp4"  # Replace with your video file path
+video_path = "/Users/tanisha/Documents/Carnegie Mellon/intern/face_tracking/data/2/video.mp4"  # Replace with your video file path
 resolution = get_video_resolution(video_path)
 if resolution:
     print(f"Video Resolution: {resolution[0]}x{resolution[1]}")

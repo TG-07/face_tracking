@@ -4,13 +4,13 @@
 ENV_NAME="face_tracker"
 
 # Activate the Conda environment
-source activate $ENV_NAME
+conda activate $ENV_NAME
 
 # Set the paths for input and output
-VIDEO_PATH="data/video_2.mp4"
-REFERENCE_IMAGE="data/ref_image_1.png"
-OUTPUT_DIR="output"
-TRACKER="mosse"
+VIDEO_PATH="data/1/video.mp4"
+REFERENCE_IMAGE="data/1/ref_image.png"
+OUTPUT_DIR="output/1/"
+TRACKER="CSRT"   #available trackers - CSRT, MIL
 
 # Run the main.py script
 python main.py \

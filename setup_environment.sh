@@ -2,7 +2,7 @@
 
 # Set up a Python virtual environment and install dependencies
 
-ENV_NAME="face_tracking_env"
+ENV_NAME="face_tracking"
 
 echo "Creating Conda environment: $ENV_NAME"
 conda create --name $ENV_NAME python=3.8 -y
@@ -14,7 +14,8 @@ conda activate $ENV_NAME
 # Install required Python packages
 echo "Installing Python dependencies..."
 
-pip install opencv-python mtcnn scikit-learn -y
+pip install face_recognition
+pip install opencv-contrib-python
 
 # Confirm installation
 echo "Installation complete!"

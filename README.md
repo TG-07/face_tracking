@@ -7,7 +7,7 @@ This project detects and tracks a specific face in a video, creates clips contai
 - Identify the target face based on a reference image
 - Track the target face across frames to create continuous clips
 - Split clips when scene changes or full occlusions occur
-- Extract video clips to include only the target face
+- Crop video clips to include only the target face
 - Save cropped videos as individual files
 - Generate metadata (JSON) for each clip, including:
   - File name of the cropped video
@@ -32,8 +32,8 @@ cd face-tracker
 
 2. Set up the conda environment (recommended):
 ```bash  
-    chmod +x setup_environment.sh
-    bash setup_environment.sh 
+chmod +x setup_environment.sh
+bash setup_environment.sh 
 ```
 ## Usage
 
@@ -65,7 +65,7 @@ Arguments:
 
 Example:
 ```bash 
-python main.py --video_path data/sample_video.mp4 --reference_image data/reference_face.jpg --output_dir output --tracker kcf
+python main.py --video_path data/sample_video.mp4 --reference_image data/reference_face.jpg --output_dir output --tracker CSRT
 ```
 ## Output
 
@@ -79,15 +79,27 @@ The script will create the following in the specified output directory:
 
 ## Tracker Types
 
-- KCF (Kernelized Correlation Filters): Fast and accurate for most scenarios
-- CSRT (Discriminative Correlation Filter with Channel and Spatial Reliability): More accurate but slower than KCF
-- MOSSE (Minimum Output Sum of Squared Error): Very fast, but may be less accurate in complex scenarios
+## 1. CSRT (Channel and Spatial Reliability Tracker)
+- **Best for:** High accuracy tracking with slow-moving objects.
+- **Pros:**
+  - Works well with occlusions and abrupt motion.
+  - Higher accuracy compared to other trackers.
+- **Cons:**
+  - Slower than other trackers, making it less suitable for real-time applications.
+
+## 2. MIL (Multiple Instance Learning)
+- **Best for:** Handling appearance changes of the object.
+- **Pros:**
+  - Works well with objects that change in appearance over time.
+- **Cons:**
+  - Less stable and can drift if misclassified initially.
 
 ## Limitations
 
-- The face detection and recognition accuracy depends on the quality of the input video and reference image
-- Extreme changes in face angle or lighting may affect tracking performance
-- The script currently does not handle real-time video input
+- The accuracy of face detection and recognition is influenced by the quality of the input video and reference image. Low-quality videos may result in missed face detections.
+- There is a trade-off between performance and speed. Running facial recognition on every frame is computationally expensive. To optimize this, my approach applies face recognition initially to identify a match and then uses a tracking algorithm with periodic checks every 15 frames.
+- Extreme changes in face angle or lighting affect tracking performance.
+- The quality of the generated results depends on the effectiveness of the face recognition and matching algorithms.
 
 ## Acknowledgments
 
