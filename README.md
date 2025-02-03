@@ -125,5 +125,5 @@ The processed videos are saved in the output directory. Note that there is no ou
 - Face recognition is powered by the [face_recognition](https://github.com/ageitgey/face_recognition) library
 - OpenCV is used for video processing and tracking algorithms
 
-Stock footage provided by [Freepik](https://www.videvo.net/author/freepik/), downloaded from [videvo.net](https://www.videvo.net/)
+Stock footage provided by [Freepik](https://www.videvo.net/author/freepik/), downloaded from [videvo.net](https://www.videvo.net/). 
 Other input videos downloaded from Youtube
