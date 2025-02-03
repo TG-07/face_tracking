@@ -116,7 +116,7 @@ The processed videos are saved in the output directory. Note that there is no ou
 ## Limitations
 
 - The accuracy of face detection and recognition is influenced by the quality of the input video and reference image. Low-quality videos may result in missed face detections.
-- There is a trade-off between performance and speed. Running facial recognition on every frame is computationally expensive. To optimize this, my approach applies face recognition initially to identify a match and then uses a tracking algorithm with periodic checks every 15 frames.
+- There is a trade-off between performance and speed. Running facial recognition on every frame is computationally expensive. To optimize this, my approach applies face recognition initially to identify a match and then uses a tracking algorithm with periodic checks every 30 frames.
 - Extreme changes in face angle or lighting affect tracking performance.
 - The quality of the generated results depends on the effectiveness of the face recognition and matching algorithms.
 
