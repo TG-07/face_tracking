@@ -31,27 +31,43 @@ cd face_tracking
 ```
 
 2. Set up the conda environment (recommended):
+
+Create and Activate Conda Environment
+Ensure you have [Anaconda](https://www.anaconda.com/download) or [Miniconda](https://docs.anaconda.com/miniconda/install/) installed. Then, run:
 ```bash  
-chmod +x setup_environment.sh
-bash setup_environment.sh 
+conda create --name face_tracker python=3.8 -y
+conda activate face_tracker
+```
+Run the following command to install all required Python packages:
+```bash
+pip install -r requirements.txt
+```
+
+Check if all dependencies are installed properly:
+```bash
+pip list
+```
+
+## Project Structure
+```bash
+.
+├── data/
+│   ├── 1/
+│   │   ├── video.mp4
+│   │   ├── ref_image.png
+│
+├── output/
+│   ├── 1/
+│
+├── src/
+│   ├── trackers.py
+│
+├── main.py
+├── requirements.txt
+├── README.md
 ```
 ## Usage
-
 You can run the face tracker and video clipper using the following command:
-
-1. Make the script executable:
-```bash
-chmod +x run.sh
-```
-
-2. Run the script:
-```bash 
-bash run.sh
-```
-
-You can modify the variables in `run.sh` to change the input paths, output directory, or tracker type.
-
-Alternatively, you can use this command to run it:
 
 ```bash 
 python main.py --video_path <path_to_video> --reference_image <path_to_reference_image> --output_dir <output_directory> --tracker <tracker_type>
@@ -61,11 +77,11 @@ Arguments:
 - `--video_path`: Path to the input video file
 - `--reference_image`: Path to the reference image of the target face
 - `--output_dir`: Directory to save output files
-- `--tracker`: Choose the tracking algorithm (options: 'kcf', 'csrt', 'mosse', default: 'kcf')
+- `--tracker`: Choose the tracking algorithm (options: 'CSRT', 'MIL', default: 'CSRT')
 
 Example:
 ```bash 
-python main.py --video_path data/sample_video.mp4 --reference_image data/reference_face.jpg --output_dir output --tracker CSRT
+python main.py --video_path data/1/video.mp4 --reference_image data/1/ref_image.png --output_dir output/1 --tracker CSRT
 ```
 ## Output
 
@@ -94,6 +110,9 @@ The script will create the following in the specified output directory:
 - **Cons:**
   - Less stable and can drift if misclassified initially.
 
+## Results
+The processed videos are saved in the output directory. Note that there is no output for data/2 because the face recognition algorithm failed to detect a face in the reference image due to its quality.
+
 ## Limitations
 
 - The accuracy of face detection and recognition is influenced by the quality of the input video and reference image. Low-quality videos may result in missed face detections.
@@ -107,3 +126,4 @@ The script will create the following in the specified output directory:
 - OpenCV is used for video processing and tracking algorithms
 
 Stock footage provided by [Freepik](https://www.videvo.net/author/freepik/), downloaded from [videvo.net](https://www.videvo.net/)
+Other input videos downloaded from Youtube

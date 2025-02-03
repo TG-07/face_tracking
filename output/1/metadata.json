@@ -1,6 +1,6 @@
 [
     {
-        "file": "../output/1/clip1.mp4",
+        "file": "output/1/clip1.mp4",
         "start_time": 0.0,
         "end_time": 21.36,
         "frames": [
