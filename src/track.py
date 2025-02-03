@@ -17,7 +17,7 @@ def create_tracker(tracker_type):
     }
     return trackers[tracker_type]
 
-def process_video(video_path, reference_image_path, output_folder, tracker_type="CSRT"):
+def process_video(video_path, reference_image_path, output_folder, tracker_type):
     cap = cv2.VideoCapture(video_path)
     fps = cap.get(cv2.CAP_PROP_FPS)
     ref_encoding = get_face_encoding(reference_image_path)
@@ -30,7 +30,6 @@ def process_video(video_path, reference_image_path, output_folder, tracker_type=
     clip_id, tracking_face, face_clip = 0, None, []
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     tracker = create_tracker(tracker_type)
-    # tracker = cv2.TrackerCSRT_create()
     initialized = False
     W, H = 0, 0
     frame_counter = 0
@@ -50,7 +49,7 @@ def process_video(video_path, reference_image_path, output_folder, tracker_type=
             face_encodings = face_recognition.face_encodings(frame_rgb, face_locations)
             
             for (top, right, bottom, left), encoding in zip(face_locations, face_encodings):
-                match = face_recognition.compare_faces([ref_encoding], encoding, tolerance=0.5)
+                match = face_recognition.compare_faces([ref_encoding], encoding, tolerance=0.50)
                 
                 if match[0]:
                     bbox = (left, top, right - left, bottom - top)
@@ -80,7 +79,7 @@ def process_video(video_path, reference_image_path, output_folder, tracker_type=
                         face_crop_rgb = cv2.cvtColor(face_crop, cv2.COLOR_BGR2RGB)
                         encoding = face_recognition.face_encodings(face_crop_rgb)
                         if encoding:
-                            match = face_recognition.compare_faces([ref_encoding], encoding[0], tolerance=0.5)
+                            match = face_recognition.compare_faces([ref_encoding], encoding[0], tolerance=0.50)
                             if not match[0]:
                                 out.release()
                                 metadata.append({
@@ -118,4 +117,3 @@ def process_video(video_path, reference_image_path, output_folder, tracker_type=
     with open(metadata_path, 'w') as f:
         json.dump(metadata, f, indent=4)
     print(f"Processing complete. Clips saved. Metadata written to {metadata_path}.")
-

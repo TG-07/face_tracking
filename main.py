@@ -13,7 +13,7 @@ def main():
     parser.add_argument("--tracker", choices=['CSRT', 'MIL'], 
                         default='CSRT', help="Choose the tracking algorithm")
     args = parser.parse_args()
-    process_video(args.video_path, args.reference_image, args.output_dir)
+    process_video(args.video_path, args.reference_image, args.output_dir, args.tracker)
 
 if __name__ == "__main__":
     main()
